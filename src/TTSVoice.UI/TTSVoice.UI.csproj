@@ -17,4 +17,9 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TTSVoice.Domain\TTSVoice.Domain.csproj" />
+    <ProjectReference Include="..\TTSVoice.Infrastructure\TTSVoice.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
