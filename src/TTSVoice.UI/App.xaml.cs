@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace TTSVoice
+namespace TTSVoice.UI
 {
     /// <summary>
     /// Interaction logic for App.xaml

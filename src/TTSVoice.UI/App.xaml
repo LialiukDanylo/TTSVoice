@@ -1,8 +1,8 @@
-﻿<Application x:Class="TTSVoice.App"
+﻿<Application x:Class="TTSVoice.UI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TTSVoice"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:TTSVoice.UI"
+             StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
          
     </Application.Resources>

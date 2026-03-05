@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8 d17.14
+VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTSVoice", "TTSVoice\TTSVoice.csproj", "{71E6CA23-59CC-4D02-86B1-7D631D797C67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTSVoice.Domain", "src\TTSVoice.Domain\TTSVoice.Domain.csproj", "{EA88C1A7-AE0D-AEDB-7EAF-33506F9C8058}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTSVoice.Infrastructure", "src\TTSVoice.Infrastructure\TTSVoice.Infrastructure.csproj", "{47AD1CAB-11D8-F756-4948-B5D55A3B9FD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTSVoice.UI", "src\TTSVoice.UI\TTSVoice.UI.csproj", "{6E5DACBB-FF74-AF26-1A99-801596212E4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{71E6CA23-59CC-4D02-86B1-7D631D797C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71E6CA23-59CC-4D02-86B1-7D631D797C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71E6CA23-59CC-4D02-86B1-7D631D797C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71E6CA23-59CC-4D02-86B1-7D631D797C67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA88C1A7-AE0D-AEDB-7EAF-33506F9C8058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA88C1A7-AE0D-AEDB-7EAF-33506F9C8058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA88C1A7-AE0D-AEDB-7EAF-33506F9C8058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA88C1A7-AE0D-AEDB-7EAF-33506F9C8058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47AD1CAB-11D8-F756-4948-B5D55A3B9FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47AD1CAB-11D8-F756-4948-B5D55A3B9FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47AD1CAB-11D8-F756-4948-B5D55A3B9FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47AD1CAB-11D8-F756-4948-B5D55A3B9FD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E5DACBB-FF74-AF26-1A99-801596212E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E5DACBB-FF74-AF26-1A99-801596212E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E5DACBB-FF74-AF26-1A99-801596212E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E5DACBB-FF74-AF26-1A99-801596212E4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
