@@ -7,7 +7,6 @@ namespace TTSVoice.UI
     {
         public MainWindow()
         {
-            
             InitializeComponent();
             DataContext = new MainWindowVM();
         }
