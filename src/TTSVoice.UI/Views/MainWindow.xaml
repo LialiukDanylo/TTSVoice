@@ -9,8 +9,12 @@
     <Grid>
         <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="383"/>
         <Button Content="Speak" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding SpeakCommand}" Margin="221,357,0,0" Height="36" Width="200"/>
-        <ComboBox ItemsSource="{Binding Devices}" SelectedIndex="{Binding SelectedDeviceIndex}" HorizontalAlignment="Left" Margin="221,10,0,0" VerticalAlignment="Top" Width="200"/>
-
+        
+        <StackPanel Margin="221,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ComboBox ItemsSource="{Binding Devices}" SelectedIndex="{Binding SelectedOutputIndex}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"/>
+            <CheckBox Content="Monitoring" IsChecked="{Binding IsMonitoringEnabled}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0"/>
+            <ComboBox ItemsSource="{Binding Devices}" SelectedIndex="{Binding SelectedMonitorIndex}" IsEnabled="{Binding IsMonitoringEnabled}" Width="200" Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </StackPanel>
 
     </Grid>
 </Window>

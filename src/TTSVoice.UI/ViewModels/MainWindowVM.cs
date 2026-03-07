@@ -19,7 +19,13 @@ namespace TTSVoice.UI.ViewModels
         private ObservableCollection<string> _devices = new();
 
         [ObservableProperty]
-        private int _selectedDeviceIndex = -1;
+        private int _selectedOutputIndex = -1;
+
+        [ObservableProperty]
+        private bool _isMonitoringEnabled = false;
+
+        [ObservableProperty]
+        private int _selectedMonitorIndex = -1;
 
         private CancellationTokenSource? _playCts;
 
@@ -30,7 +36,7 @@ namespace TTSVoice.UI.ViewModels
             _devices = new ObservableCollection<string>(_audioService.GetOutputDevices());
             _ttsService = new GoogleTtsService();
 
-            if (Devices.Count > 0) SelectedDeviceIndex = 0;
+            if (Devices.Count > 0) SelectedOutputIndex = 0; SelectedMonitorIndex = 0;
         }
 
         [RelayCommand(CanExecute = nameof(CanSpeak), AllowConcurrentExecutions = true)]
@@ -44,7 +50,18 @@ namespace TTSVoice.UI.ViewModels
             {
                 byte[] audioData = await _ttsService.SynthesizeAsync(InputText, ct);
 
-                await _audioService.PlayAsync(audioData, SelectedDeviceIndex, ct);
+                if (audioData == null || audioData.Length == 0) return;
+
+                var playbackTasks = new List<Task>();
+
+                playbackTasks.Add(_audioService.PlayAsync(audioData, SelectedOutputIndex, ct));
+
+                if (IsMonitoringEnabled)
+                {
+                    playbackTasks.Add(_audioService.PlayAsync(audioData, SelectedMonitorIndex, ct));
+                }
+
+                await Task.WhenAll(playbackTasks);
             }
             catch (Exception ex)
             {
