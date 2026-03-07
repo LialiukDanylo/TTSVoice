@@ -23,12 +23,14 @@ namespace TTSVoice.UI.ViewModels
 
         private CancellationTokenSource? _playCts;
 
+        private ITtsService _ttsService;
         public MainWindowVM()
         {
             _audioService = new NAudioService();
             _devices = new ObservableCollection<string>(_audioService.GetOutputDevices());
+            _ttsService = new GoogleTtsService();
 
-            if (Devices.Count > 0) _selectedDeviceIndex = 0;
+            if (Devices.Count > 0) SelectedDeviceIndex = 0;
         }
 
         [RelayCommand(CanExecute = nameof(CanSpeak), AllowConcurrentExecutions = true)]
@@ -36,9 +38,13 @@ namespace TTSVoice.UI.ViewModels
         {
             _playCts?.Cancel();
             _playCts = new CancellationTokenSource();
+            var ct = _playCts.Token;
 
             try
             {
+                byte[] audioData = await _ttsService.SynthesizeAsync(InputText, ct);
+
+                await _audioService.PlayAsync(audioData, SelectedDeviceIndex, ct);
             }
             catch (Exception ex)
             {
