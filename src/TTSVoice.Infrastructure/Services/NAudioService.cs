@@ -8,6 +8,9 @@ namespace TTSVoice.Infrastructure.Services
         public List<string> GetOutputDevices()
         {
             var devices = new List<string>();
+
+            devices.Add("Default");
+
             for (int i = 0; i < WaveOut.DeviceCount; i++)
             {
                 var caps = WaveOut.GetCapabilities(i);
@@ -17,16 +20,18 @@ namespace TTSVoice.Infrastructure.Services
             return devices;
         }
 
-        public async Task PlayAsync(byte[] data, int deviceId, CancellationToken ct)
+        public async Task PlayAsync(byte[] data, int deviceIndex, CancellationToken ct)
         {
             if (data == null || data.Length == 0) return;
+
+            int systemDeviceId = deviceIndex - 1;
 
             await Task.Run(async () =>
             {
                 using var ms = new MemoryStream(data);
 
                 using var reader = new StreamMediaFoundationReader(ms);
-                using var outputDevice = new WaveOutEvent { DeviceNumber = deviceId };
+                using var outputDevice = new WaveOutEvent { DeviceNumber = systemDeviceId };
 
                 outputDevice.Init(reader);
                 outputDevice.Play();
