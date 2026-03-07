@@ -22,10 +22,16 @@ namespace TTSVoice.UI.ViewModels
         private int _selectedOutputIndex = -1;
 
         [ObservableProperty]
+        private int _outputVolume = 100;
+
+        [ObservableProperty]
         private bool _isMonitoringEnabled = false;
 
         [ObservableProperty]
         private int _selectedMonitorIndex = -1;
+
+        [ObservableProperty]
+        private int _monitorVolume = 100;
 
         private CancellationTokenSource? _playCts;
 
@@ -54,11 +60,11 @@ namespace TTSVoice.UI.ViewModels
 
                 var playbackTasks = new List<Task>();
 
-                playbackTasks.Add(_audioService.PlayAsync(audioData, SelectedOutputIndex, ct));
+                playbackTasks.Add(_audioService.PlayAsync(audioData, SelectedOutputIndex, OutputVolume, ct));
 
                 if (IsMonitoringEnabled)
                 {
-                    playbackTasks.Add(_audioService.PlayAsync(audioData, SelectedMonitorIndex, ct));
+                    playbackTasks.Add(_audioService.PlayAsync(audioData, SelectedMonitorIndex, MonitorVolume, ct));
                 }
 
                 await Task.WhenAll(playbackTasks);

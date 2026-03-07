@@ -1,4 +1,5 @@
 ﻿using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 using TTSVoice.Domain.Interfaces;
 
 namespace TTSVoice.Infrastructure.Services
@@ -20,7 +21,7 @@ namespace TTSVoice.Infrastructure.Services
             return devices;
         }
 
-        public async Task PlayAsync(byte[] data, int deviceIndex, CancellationToken ct)
+        public async Task PlayAsync(byte[] data, int deviceIndex, int volume, CancellationToken ct)
         {
             if (data == null || data.Length == 0) return;
 
@@ -31,9 +32,17 @@ namespace TTSVoice.Infrastructure.Services
                 using var ms = new MemoryStream(data);
 
                 using var reader = new StreamMediaFoundationReader(ms);
+
+                var sampleProvider = reader.ToSampleProvider();
+
+                var volumeProvider = new VolumeSampleProvider(sampleProvider)
+                {
+                    Volume = volume / 100f,
+                };
+
                 using var outputDevice = new WaveOutEvent { DeviceNumber = systemDeviceId };
 
-                outputDevice.Init(reader);
+                outputDevice.Init(volumeProvider);
                 outputDevice.Play();
 
                 using var registration = ct.Register(() => outputDevice.Stop());

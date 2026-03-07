@@ -3,6 +3,6 @@
     public interface IAudioService
     {
         List<string> GetOutputDevices();
-        Task PlayAsync(byte[] data, int deviceIndex, CancellationToken ct);
+        Task PlayAsync(byte[] data, int deviceIndex, int volume, CancellationToken ct);
     }
 }
