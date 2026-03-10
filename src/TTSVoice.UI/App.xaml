@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:TTSVoice.UI"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Colors.xaml"/>
+                <ResourceDictionary Source="/Styles/CheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/TextBlockStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/SliderStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ComboBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

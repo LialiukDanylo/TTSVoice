@@ -5,19 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TTSVoice.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TextBox VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="383"/>
-        <Button Content="Speak" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding SpeakCommand}" Margin="221,357,0,0" Height="36" Width="200"/>
+        Title="TTSVoice" Height="440" Width="450" Background="{StaticResource Brush.Window.Background}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Width="410" Height="380" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
         
-        <StackPanel Margin="221,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <ComboBox ItemsSource="{Binding Devices}" SelectedIndex="{Binding SelectedOutputIndex}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"/>
-            <Slider HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Width="200" Maximum="200" Value="{Binding OutputVolume}"/>
-            <CheckBox Content="Monitoring" IsChecked="{Binding IsMonitoringEnabled}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0"/>
-            <ComboBox ItemsSource="{Binding Devices}" SelectedIndex="{Binding SelectedMonitorIndex}" IsEnabled="{Binding IsMonitoringEnabled}" Width="200" Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Slider HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Width="200" Maximum="200" Value="{Binding MonitorVolume}"/>
-        </StackPanel>
-        
+        <TextBox Grid.Column="0" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"/>
 
+        <StackPanel Grid.Column="2">
+            <StackPanel Margin="0,0,0,10" VerticalAlignment="Top">
+                <TextBlock Text="MAIN OUTPUT" Margin="0,0,0,5"/>
+                <ComboBox Width="200" Margin="0,0,0,5" ItemsSource="{Binding Devices}" SelectedIndex="{Binding SelectedOutputIndex}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <DockPanel>
+                    <TextBlock Text="Vol:" Margin="0,0,5,0"/>
+                    <Slider Value="{Binding OutputVolume}" Maximum="200" VerticalAlignment="Center"/>
+                </DockPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Margin="0,0,0,10" VerticalAlignment="Top">
+                <DockPanel Margin="0,0,0,5">
+                    <TextBlock Text="MONITORING" IsEnabled="{Binding IsMonitoringEnabled}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <CheckBox IsChecked="{Binding IsMonitoringEnabled}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </DockPanel>
+                <ComboBox ItemsSource="{Binding Devices}" SelectedIndex="{Binding SelectedMonitorIndex}" IsEnabled="{Binding IsMonitoringEnabled}" Width="200" Margin="0,0,0,5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <DockPanel IsEnabled="{Binding IsMonitoringEnabled}">
+                    <TextBlock Text="Vol:" Margin="0,0,5,0"/>
+                    <Slider Value="{Binding MonitorVolume}" Maximum="200" VerticalAlignment="Center"/>
+                </DockPanel>
+            </StackPanel>
+        </StackPanel>
+        <Button Grid.Column="2" Content="Speak" Command="{Binding SpeakCommand}" Height="36" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
